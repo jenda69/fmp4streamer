@@ -31,6 +31,10 @@ class V4L2Camera(Thread):
         capture_format = params.get('capture_format', 'H264')
         self.auto_sleep = config.getboolean(device, 'auto_sleep', fallback=True)
 
+        self.camera_event_script = config.get(device, 'camera_event_script', fallback=None)
+        if self.camera_event_script:
+            self.camera_event_script = self.camera_event_script.split()
+
         if capture_format == 'MJPGH264':
             params['uvcx_h264_stream_mux'] = 'H264'
             params['uvcx_h264_width'] = width
@@ -281,13 +285,19 @@ class V4L2Camera(Thread):
         if not self.auto_sleep:
             return
         self.sleeping = True
+        self.camera_event()
 
     def wakeup(self):
         if not self.auto_sleep:
             return
         with self.condition:
             self.sleeping = False
+            self.camera_event()
             self.condition.notify_all()
+
+    def camera_event(self):
+        if self.camera_event_script:
+            subprocess.Popen(self.camera_event_script + ["0" if self.sleeping else "1"], shell=False, stdin=None, stdout=open(os.devnull, 'wb'), stderr=open(os.devnull, 'wb'))
 
     # Thread run
     def run(self):
