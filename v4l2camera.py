@@ -1,6 +1,6 @@
 from fcntl import ioctl
 from threading import Thread, Condition, Lock
-import mmap, os, struct, logging, sys
+import mmap, os, struct, logging, sys, subprocess
 
 import v4l2
 from v4l2ctrls import V4L2Ctrls
