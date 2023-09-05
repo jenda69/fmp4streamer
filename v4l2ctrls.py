@@ -13,7 +13,7 @@ class V4L2Ctrls:
 
     def setup_v4l2_ctrls(self, params):
         for k, v in params.items():
-            if k in ['width', 'height', 'fps', 'auto_sleep', 'rotation',
+            if k in ['width', 'height', 'fps', 'auto_sleep', 'camera_event_script', 'rotation',
             'capture_format', 'capture_memory',
             'decoder', 'decoder_input_format', 'decoder_memory',
             'encoder', 'encoder_input_format', 'encoder_memory',
