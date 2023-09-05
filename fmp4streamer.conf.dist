@@ -21,6 +21,7 @@ fps = 30
 # Auto Sleep mode (default: yes)
 # Sleep the camera when no one is watching the stream
 # auto_sleep = yes
+# camera_event_script = python /home/user/script.py
 
 # Sets the MP4 TRAK rotation matrix (default: 0)
 # 0, 90, 180, 270
