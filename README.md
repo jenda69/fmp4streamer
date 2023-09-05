@@ -115,13 +115,15 @@ fps = 30
 # Auto Sleep mode (default: yes)
 # Sleep the camera when no one is watching the stream
 # auto_sleep = yes
+# If camera goes to sleep or wakes up, run this script. There's parameter 0 if camera sleeps and 1 if wakes up.
+# camera_event_script = python /home/user/script.py
 
 # Sets the MP4 TRAK rotation matrix (default: 0)
 # 0, 90, 180, 270
 # rotation = 0
 
 # Controls
-
+[/dev/video11]
 # you can set any V4L2 control too, list them with the -l option
 h264_profile = High
 h264_level = 4.2
